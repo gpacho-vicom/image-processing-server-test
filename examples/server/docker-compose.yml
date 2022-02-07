@@ -1,0 +1,18 @@
+version: '3'
+services:
+  webrtc:
+    build: ./
+    volumes:
+      - ./data:/home/hpc/data
+      - ./data/models:/home/hpc/data/models
+      - ./index.html:/home/hpc/index.html
+      - ./server.py:/home/hpc/server.py
+      - ./start_webrtc.sh:/home/hpc/start.sh
+      - ./client.js:/home/hpc/client.js
+      - ./demo-instruct.wav:/home/hpc/demo-instruct.wav
+    ports:
+      - "8080:8080"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    shm_size: '1gb'
